@@ -9,7 +9,7 @@
 struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
 {
 	struct SlistNode *new_head,*cur;
-	new_head = cur = (struct ListNode*)malloc(sizeof(struct ListNode*));
+	new_head = cur = (struct ListNode*)malloc(sizeof(struct ListNode));
 
 	if (l1 == NULL)
 	{
@@ -35,6 +35,17 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
 			l2=l2->next; 	
 		}
 	}
+	
+	if(l1 == NULL) 
+	{
+		cur->next = l2;
+	}
+	if(l2 == NULL)
+	{
+		cur->next = l1;
+	}
+	
+	return new_head->next;
 
 }
 
