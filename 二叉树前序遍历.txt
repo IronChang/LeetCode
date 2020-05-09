@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<iostream>
+#include<vector>
+#include<stack>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+//递归版本
+class Solution {
+public:
+	vector<int> ret;
+	void dfs(TreeNode* root)
+	{
+		if (root == nullptr)
+			return;
+		ret.push_back(root->val);
+		dfs(root->left);
+		dfs(root->right);
+	}
+	vector<int> preorderTraversal(TreeNode* root) {
+		dfs(root);
+		return ret;
+	}
+};
+
+//非递归
+class Solution {
+public:
+	vector<int> ret;
+	vector<int> preorderTraversal(TreeNode* root) {
+		if (root == nullptr)
+			return ret;
+		stack<TreeNode*> st;
+		st.push(root);
+		while (!st.empty())
+		{
+			TreeNode* tmp = st.top();
+			st.pop();
+			ret.push_back(tmp->val);
+			if (tmp->right)
+				st.push(tmp->right);
+			if (tmp->left)
+				st.push(tmp->left);
+		}
+		return ret;
+	}
+};
