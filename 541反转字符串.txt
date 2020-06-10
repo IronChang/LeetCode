@@ -1,0 +1,13 @@
+class Solution {
+public:
+    string reverseStr(string s, int k) {
+        string::iterator it = s.begin();
+        while(it < s.end())
+        {
+            if(it+k > s.end())  reverse(it,s.end());          
+            else    reverse(it,it+k);
+            it+=2*k;
+        }
+        return s;
+    }
+};
