@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool Isexist(ListNode* head,int val)
+    {
+        if(head == nullptr) return false;
+
+        ListNode *cur = head;
+        while(cur)
+        {
+            if(cur->val == val)
+            {
+                return true;
+            }
+            cur=cur->next;
+        }
+        return false;
+    }
+    ListNode* removeDuplicateNodes(ListNode* head) {       
+        ListNode *ret = new ListNode(-1),*cur = ret;
+        while(head)
+        {
+            if(!Isexist(ret,head->val))
+            {
+                ListNode *tmp = new ListNode;
+                tmp->val = head->val;
+                cur->next = tmp;
+                cur = tmp;
+            }
+            head = head->next;
+        }
+        return ret->next;
+    }
+};
